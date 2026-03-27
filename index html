@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Care Support – Professional Patient Care & Nursing Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0a7c6e;
+    --teal-light: #12a08f;
+    --teal-pale: #e0f5f2;
+    --navy: #0d2b45;
+    --gold: #f4a61d;
+    --white: #ffffff;
+    --gray: #f7f9fb;
+    --text: #1a2e3b;
+    --muted: #5c7a8a;
+    --red: #e74c3c;
+    --radius: 18px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 72px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(10,124,110,0.12);
+    animation: slideDown .5s ease;
+  }
+
+  @keyframes slideDown { from { transform: translateY(-100%); opacity:0; } to { transform: none; opacity:1; } }
+
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo svg { width: 40px; height: 40px; }
+  .nav-logo-text { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); line-height: 1.1; }
+  .nav-logo-text span { color: var(--teal); font-size: .7rem; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: .05em; display: block; }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: .9rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal); color: var(--white);
+    border: none; padding: 10px 22px; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: .9rem;
+    cursor: pointer; transition: background .2s, transform .15s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--teal-light); transform: scale(1.04); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d2b45 0%, #0a7c6e 60%, #12a08f 100%);
+    display: flex; align-items: center;
+    padding: 100px 5vw 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-content { flex: 1; max-width: 560px; z-index: 1; animation: fadeUp .8s ease both; }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform:none; } }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15); color: var(--white);
+    padding: 6px 16px; border-radius: 50px; font-size: .8rem; font-weight: 500;
+    margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.25);
+  }
+  .hero-badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.4); } }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: var(--white); line-height: 1.1; margin-bottom: 1.2rem;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p { color: rgba(255,255,255,0.8); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 28px; border-radius: 50px; font-weight: 700;
+    text-decoration: none; font-size: .95rem;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 20px rgba(244,166,29,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,166,29,0.5); }
+
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 14px 28px; border-radius: 50px; font-weight: 600;
+    text-decoration: none; font-size: .95rem;
+    border: 2px solid rgba(255,255,255,0.5);
+    transition: border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+  .hero-stats { display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+  .stat { color: var(--white); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; display: block; }
+  .stat-lbl { font-size: .8rem; color: rgba(255,255,255,0.6); }
+
+  .hero-visual {
+    flex: 1; display: flex; justify-content: flex-end; align-items: center;
+    z-index: 1; animation: fadeUp .8s .2s ease both;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px; padding: 2rem;
+    max-width: 320px; width: 100%;
+  }
+  .hero-card h3 { color: var(--white); font-size: 1rem; margin-bottom: 1rem; }
+  .service-pill {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    color: var(--white); padding: 6px 14px; border-radius: 50px;
+    font-size: .8rem; margin: 4px; border: 1px solid rgba(255,255,255,0.2);
+  }
+  .availability {
+    margin-top: 1.5rem; padding: 12px; background: rgba(244,166,29,0.2);
+    border-radius: 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .avail-dot { width: 10px; height: 10px; background: #4caf50; border-radius: 50%; flex-shrink: 0; animation: pulse 1.5s infinite; }
+  .availability p { color: var(--white); font-size: .85rem; }
+
+  /* SECTIONS */
+  section { padding: 80px 5vw; }
+  .section-label { color: var(--teal); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .5rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--navy); margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; line-height: 1.7; }
+
+  /* SERVICES */
+  .services-bg { background: var(--gray); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .service-card {
+    background: var(--white); border-radius: var(--radius); padding: 1.8rem;
+    border: 1px solid rgba(10,124,110,0.1);
+    transition: transform .2s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    transform: scaleX(0); transform-origin: left; transition: transform .3s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(10,124,110,0.12); }
+  .service-icon {
+    width: 52px; height: 52px; background: var(--teal-pale);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1rem;
+  }
+  .service-card h3 { color: var(--navy); font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+  .service-card p { color: var(--muted); font-size: .875rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="40" height="40" rx="10" fill="#0a7c6e"/>
+      <path d="M20 8v24M8 20h24" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="nav-logo-text">Health Care Support<span>Professional Nursing Services</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#care">Special Care</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:7888009998" class="nav-cta">📞 Call Now</a>
+  <div class="hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Trusted Care Since 2015</div>
+    <h1>Compassionate <em>Healthcare</em> at Your Doorstep</h1>
+    <p>Professional nursing and patient care services available 24/7. We bring expert care to your home with verified, trained caretakers you can trust.</p>
+    <div class="hero-actions">
+      <a href="tel:7888009998" class="btn-primary">📞 Call Now</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-lbl">Patients Served</span></div>
+      <div class="stat"><span class="stat-num">24/7</span><span class="stat-lbl">Available</span></div>
+      <div class="stat"><span class="stat-num">10+</span><span class="stat-lbl">Years Experience</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <h3>Our Services Include</h3>
+      <span class="service-pill">🏥 Nursing Care</span>
+      <span class="service-pill">💊 Medicine Mgmt</span>
+      <span class="service-pill">🩺 Health Checks</span>
+      <span class="service-pill">🧓 Old Age Care</span>
+      <span class="service-pill">🛏️ Bedridden Care</span>
+      <span class="service-pill">🏨 Hospital Attendant</span>
+      <div class="availability">
+        <span class="avail-dot"></span>
+        <p>Available Now · Bhiwandi & Nearby Areas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-label">What We Offer</div>
+  <div class="section-title">Our Care Services</div>
+  <div class="section-sub">Comprehensive healthcare support for patients of all conditions, delivered with professionalism and empathy.</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏥</div>
+      <h3>24 Hours Nursing</h3>
+      <p>Round-the-clock professional nursing care at home or hospital, ensuring continuous monitoring and support.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏡</div>
+      <h3>Patient Care at Home</h3>
+      <p>Dedicated home care for patients recovering from illness, surgery, or managing chronic conditions.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧓</div>
+      <h3>Old Age Care</h3>
+      <p>Compassionate and dignified care for elderly individuals, helping them maintain independence and comfort.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛏️</div>
+      <h3>Bedridden Patient Care</h3>
+      <p>Specialized care for bedridden patients including positioning, hygiene, wound care, and comfort management.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💉</div>
+      <h3>Injection / BP / Sugar Check</h3>
+      <p>Professional administration of injections and routine health monitoring including blood pressure and glucose levels.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💊</div>
+      <h3>Medicine Management</h3>
+      <p>Ensuring timely and accurate medication administration with proper tracking and documentation.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏨</div>
+      <h3>Hospital Attendant</h3>
+      <p>Trained attendants to assist and support patients during hospital stays for comfort and communication.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Caretaker Services</h3>
+      <p>General caretaking and assistance for daily activities, personal hygiene, and mobility support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL CARE -->
+<section id="care">
+  <div class="section-label">Special Care</div>
+  <div class="section-title">Who We Care For</div>
+  <div class="section-sub">We specialize in care for patients with complex medical needs and unique conditions.</div>
+  <div class="special-grid">
+    <div>
+      <ul class="care-list">
+        <li class="care-item"><span class="care-dot"></span><span>Paralysis Patients</span></li>
+        <li class="care-item"><span class="care-dot"></span><span>Surgery Recovery Patients</span></li>
+        <li class="care-item"><span class="care-dot"></span><span>Senior Citizens</span></li>
+        <li class="care-item"><span class="care-dot"></span><span>Disabled Patients</span></li>
+        <li class="care-item"><span class="care-dot"></span><span>ICU / Home Care Patients</span></li>
+      </ul>
+    </div>
+    <div class="care-visual">
+      <h3>Our Care Quality Metrics</h3>
+      <div class="care-stat">
+        <p><span>Patient Satisfaction</span><span>98%</span></p>
+        <div class="care-stat-bar"><div class="care-stat-fill" style="width:98%"></div></div>
+      </div>
+      <div class="care-stat">
+        <p><span>On-Time Service</span><span>95%</span></p>
+        <div class="care-stat-bar"><div class="care-stat-fill" style="width:95%"></div></div>
+      </div>
+      <div class="care-stat">
+        <p><span>Staff Certification</span><span>100%</span></p>
+        <div class="care-stat-bar"><div class="care-stat-fill" style="width:100%"></div></div>
+      </div>
+      <div class="care-stat">
+        <p><span>Response Rate</span><span>92%</span></p>
+        <div class="care-stat-bar"><div class="care-stat-fill" style="width:92%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-bg" id="why">
+  <div class="section-label">Why Choose Us</div>
+  <div class="section-title">Trusted by Hundreds of Families</div>
+  <div class="section-sub">We combine medical expertise with genuine compassion to deliver care that feels like family.</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">👨‍⚕️</div>
+      <h3>Experienced Caretakers</h3>
+      <p>All staff are trained, verified, and experienced in professional patient care.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🛡️</div>
+      <h3>Trusted & Reliable</h3>
+      <p>Background-checked professionals you can trust with your family members.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🕐</div>
+      <h3>24x7 Support</h3>
+      <p>We're available around the clock. Day, night, weekends — always here for you.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <h3>Affordable Charges</h3>
+      <p>Quality healthcare doesn't have to break the bank. Transparent, fair pricing.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏡</div>
+      <h3>Home Service Available</h3>
+      <p>Care delivered where the patient is most comfortable — at home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <div class="section-title">Contact Us</div>
+  <div class="section-sub">Reach out and we'll connect you with the right caretaker quickly.</div>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <a href="tel:7888009998" class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-card-text">
+          <p>7888009998</p><span>Call us anytime</span>
+        </div>
+      </a>
+      <a href="tel:9011071156" class="contact-card">
+        <div class="contact-icon">📱</div>
+        <div class="contact-card-text">
+          <p>9011071156</p><span>Alternative number</span>
+        </div>
+      </a>
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-icon">📍</div>
+        <div class="contact-card-text">
+          <p>Bhiwandi & Nearby Areas</p><span>Service coverage area</span>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" required>
+        </div>
+        <div class="form-field">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Mobile number" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Service Needed</label>
+        <select>
+          <option>24 Hours Nursing</option>
+          <option>Patient Care at Home</option>
+          <option>Old Age Care</option>
+          <option>Bedridden Patient Care</option>
+          <option>Injection / BP / Sugar Check</option>
+          <option>Medicine Management</option>
+          <option>Hospital Attendant</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Message / Requirements</label>
+        <textarea placeholder="Tell us about the patient's condition and your requirements..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo-text">Health Care Support</div>
+    <p style="margin-top:.8rem;">Professional Patient Care & Nursing Services serving Bhiwandi and nearby areas.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#">Nursing Care</a></li>
+      <li><a href="#">Home Patient Care</a></li>
+      <li><a href="#">Old Age Care</a></li>
+      <li><a href="#">Bedridden Care</a></li>
+      <li><a href="#">Hospital Attendant</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Special Care</h4>
+    <ul>
+      <li><a href="#">Paralysis Patients</a></li>
+      <li><a href="#">Surgery Recovery</a></li>
+      <li><a href="#">Senior Citizens</a></li>
+      <li><a href="#">ICU Home Care</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="tel:7888009998">📞 7888009998</a></li>
+      <li><a href="tel:9011071156">📱 9011071156</a></li>
+      <li><a href="#">📍 Bhiwandi</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Health Care Support. All rights reserved.</span>
+  </div>
+</footer>
+
+<a href="tel:7888009998" class="float-cta">📞 Call Now</a>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✅ Enquiry Sent!';
+    btn.style.background = '#4caf50';
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .why-card, .care-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease, box-shadow .2s, background .2s';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
